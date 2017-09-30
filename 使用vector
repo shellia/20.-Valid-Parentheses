@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        vector<char> vs;
+        int len = s.length();
+        int i;
+        for(i=0; i<len; i++)
+        {
+            if(s[i] == '(' || s[i] =='[' || s[i] == '{')
+            {
+                vs.push_back(s[i]);
+            }
+            else if(s[i] == ')' && (vs.empty() || vs.back() != '(' ))
+            {
+                 return false;
+            }
+            else if(s[i] == ']'&& (vs.empty() || vs.back() != '['))
+            {
+                 return false;
+            }
+             else if(s[i] == '}' && (vs.empty() ||vs.back() != '{'))
+            {
+                 return false;
+            }
+            else vs.pop_back();
+        }
+        if(vs.empty()) return true;
+        else return false;
+    }
+};
